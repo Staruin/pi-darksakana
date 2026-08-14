@@ -1,0 +1,35 @@
+{
+  "name": "pi-dark-sakana",
+  "version": "0.1.0",
+  "description": "Dark-template footer pack for Pi: model | folder | git repo on the left footer.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi-theme",
+    "pi-extension",
+    "tui"
+  ],
+  "files": [
+    "extensions",
+    "themes",
+    "scripts",
+    "README.md"
+  ],
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "pack:check": "npm pack --dry-run"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/footer-info.ts"
+    ],
+    "themes": [
+      "./themes/dark-sakana.json"
+    ]
+  }
+}
