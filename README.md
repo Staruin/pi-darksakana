@@ -1,7 +1,10 @@
 # pi-dark-sakana
 
-Dark-template footer pack for [Pi](https://pi.dev): a `dark`-based theme plus a
-custom footer that shows **model | folder | git repo** on the left.
+Dark-template pack for [Pi](https://pi.dev): a `dark`-based theme, a custom
+footer (**folder | git repo** on the left) and a 2-row status block below the
+input box — a model hint line (thinking chip + model id + MCP + live process
+count) at the top, the context/token/cache stats footer below it — all via the
+public extension API (`setFooter` / `setWidget`), no Pi source modification needed.
 
 ## What's inside
 
@@ -9,17 +12,25 @@ custom footer that shows **model | folder | git repo** on the left.
 |-------|------|
 | **Theme** `dark-sakana` | Exact copy of Pi's built-in `dark` theme under a new name (template base for later tweaks) |
 | **Startup header** | ASCII "PI" art (teal→cyan gradient) + divider + changelog on session start |
-| **Footer** | Replaces the built-in footer: left = `[thinking] model | folder | git`, right = context gauge, token totals, cache hit rate + extension statuses |
+| **Footer + hint line** | 2 rows below the input box, via `setFooter` + `setWidget(belowEditor)`. Row 1 = model hint (thinking + model + MCP + live process count); row 2 = footer `folder \| git` … context gauge, tokens, cache hit rate + statuses |
 
-Footer example:
+Layout example:
 
 ```text
-[HIGH] [OCG]/deepseek-v4-flash | my-project | main   [██░░░░░░░░] 12%/128k | ↑8.0k ↓150 | cache 86% | Codex 36%
+┌───────────────────────────────────────────────────────────
+│ type your message here…
+────────────────────────────────────────────────────────────  ← input-box bottom border
+[HIGH] deepseek-v4-flash                     🔌 MCP: 3 | ● 2   ← hint line (row 1)
+my-project | main   [██░░░░░░░░] 12%/128k | ↑8.0k ↓150 | cache 86% | Codex 36%   ← footer (row 2)
 ```
 
-**Left side**
+**Model hint line (row 1)** — via `setWidget(..., { placement: "belowEditor" })`, flush left (padding-0 Text)
 - Thinking level chip `[OFF]/[MIN]/[LOW]/[MED]/[HIGH]/[XHIGH]/[MAX]`, tinted with the theme's `thinking*` colors
 - Model id (accent), truncated to 24 cells
+- Right side: `🔌 MCP: <connected>` (compacted pi-mcp-adapter status) + `● <n>` live count of terminal/processes PI has spawned (throttled `ps` snapshot, skips zombies)
+- Updates live on model switch, thinking-level switch, and every footer repaint
+
+**Footer left side**
 - Folder: basename of the working directory (`~` inside home)
 - Git repo: current branch (green), `detached` (yellow), `no git` (dim)
 
@@ -27,7 +38,7 @@ Footer example:
 - Context: 10-cell gauge + `percent/context-window` from `ctx.getContextUsage()` and `ctx.model.contextWindow`; tier-colored (warning ≥ 70%, error ≥ 90%)
 - Tokens: session totals `↑input ↓output` (accumulated assistant usage)
 - Cache hit rate: latest message `cacheRead / (input + cacheRead + cacheWrite)`, `cache --` when unavailable
-- Tail: any extension statuses set via `ctx.ui.setStatus()`
+- Tail: any other extension statuses set via `ctx.ui.setStatus()`
 - Live refresh on git branch change, model switch, thinking-level switch, and message end
 
 ## Install (auto-discovery, recommended)
