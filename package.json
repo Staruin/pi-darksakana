@@ -1,23 +1,33 @@
 {
-  "name": "pi-dark-sakana",
-  "version": "0.1.0",
-  "description": "Dark-template footer pack for Pi: model | folder | git repo on the left footer.",
+  "name": "pi-darksakana",
+  "version": "0.2.0",
+  "description": "Two-theme Pi TUI pack: violet-cyberdeck and dark-sakana themes plus their header, footer, matrix and spinner extensions.",
   "type": "module",
   "license": "MIT",
   "keywords": [
     "pi-package",
     "pi-theme",
     "pi-extension",
-    "tui"
+    "tui",
+    "theme",
+    "sakana",
+    "cyberdeck"
   ],
   "files": [
-    "extensions",
     "themes",
+    "extensions",
+    "config",
+    "licenses",
     "scripts",
-    "README.md"
+    "docs",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
   ],
   "scripts": {
     "check": "node scripts/check.mjs",
+    "smoke": "node --experimental-strip-types scripts/smoke-render.mjs",
+    "preview": "node scripts/preview.mjs",
     "pack:check": "npm pack --dry-run"
   },
   "peerDependencies": {
@@ -25,11 +35,16 @@
     "@earendil-works/pi-tui": "*"
   },
   "pi": {
-    "extensions": [
-      "./extensions/footer-info.ts"
-    ],
     "themes": [
-      "./themes/dark-sakana.json"
+      "./themes/*.json"
+    ],
+    "extensions": [
+      "./extensions/darksakana/footer-info.ts",
+      "./extensions/darksakana/startup-header.ts",
+      "./extensions/cyberdeck/header/index.ts",
+      "./extensions/cyberdeck/matrix/index.ts",
+      "./extensions/cyberdeck/zentui/index.ts",
+      "./extensions/cyberdeck/claude-shimmer/index.ts"
     ]
   }
 }

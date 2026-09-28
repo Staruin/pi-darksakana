@@ -1,0 +1,9 @@
+{
+  "extensionStatuses": {
+    "placements": {
+      "codex-goal": "middle",
+      "xai-usage": "right",
+      "pi-cache-stats": "off"
+    }
+  }
+}

@@ -7,7 +7,7 @@
  */
 import assert from "node:assert/strict";
 
-const { default: extension } = await import("../extensions/footer-info.ts");
+const { default: extension } = await import("../extensions/darksakana/footer-info.ts");
 
 // ── mock pi ────────────────────────────────────────────────────────────────
 const handlers = new Map();
@@ -104,7 +104,9 @@ const hintPlain = hintText(hintCalls[0]);
 assert.match(hintPlain, /^\[HIGH\]/, "hint is flush-left and starts with thinking chip");
 assert.match(hintPlain, /\[OCG\]\/deepseek-v4-flash/, "hint contains model id");
 assert.match(hintPlain, /🔌 MCP: 3/, "hint contains compacted MCP");
-assert.match(hintPlain, /●\s*\d+/, "hint shows live PI-spawned process count");
+// Count is a digit where `ps -eo pid=,ppid=,stat=` exists (Linux/macOS), and the
+// documented unknown marker "?" where it does not (Windows, minimal containers).
+assert.match(hintPlain, /●\s*(\d+|\?)/, "hint shows live PI-spawned process count (or its unknown marker)");
 
 console.log(`render(${140}) ->`);
 console.log(lines[0]);

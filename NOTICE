@@ -1,0 +1,25 @@
+pi-darksakana bundles two themes and two extension packs. Third-party origins:
+
+1. Cyberdeck pack — extensions/cyberdeck/**, themes/violet-cyberdeck.json
+   Forked from pi-sakura-cyberdeck by beautifulrem (MIT):
+   https://github.com/beautifulrem/pi-sakura-cyberdeck
+   Changes: the pink/sakura palette was replaced with a violet family
+   (theme renamed sakura-macaron -> violet-cyberdeck); the anime braille
+   startup art was replaced with an ANSI Shadow "PI" mark; the bundled
+   dual-quota extension was removed.
+
+   This pack includes a modified copy of pi-zentui by Luka (MIT):
+   https://github.com/lmilojevicc/pi-zentui
+   Full license text: licenses/pi-zentui-MIT.txt
+   Changes: Violet Cyberdeck palette, truecolor gradient editor chrome,
+   package-specific defaults, package-specific configuration path.
+
+   claude-shimmer is a violet-themed fork of pi-claude-shimmer by ouzhenkun
+   (MIT): https://github.com/ouzhenkun/pi-claude-shimmer
+
+2. Dark Sakana pack — extensions/darksakana/**, themes/dark-sakana.json
+   Original work for this repository. The dark-sakana theme is a renamed
+   copy of Pi's built-in `dark` theme; the startup header mirrors the
+   cyberdeck header extension's approach.
+
+Pi itself is MIT licensed: https://github.com/earendil-works/pi

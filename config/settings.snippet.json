@@ -1,0 +1,14 @@
+{
+  "_comment": "Theme-relevant excerpt of ~/.pi/agent/settings.json. Secrets, API keys, provider accounts and machine-specific absolute paths are intentionally omitted. Merge the keys you want into your own settings file; do not copy this file over it.",
+  "theme": "violet-cyberdeck",
+  "tuiMode": "fullscreen",
+  "packages": [
+    {
+      "source": "git:github.com/Staruin/pi-darksakana",
+      "_comment": "Narrow to ONE pack: the two packs both own the header/footer surfaces.",
+      "extensions": [
+        "extensions/darksakana/*.ts"
+      ]
+    }
+  ]
+}
